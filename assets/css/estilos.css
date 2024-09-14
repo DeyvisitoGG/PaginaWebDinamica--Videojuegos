@@ -1,0 +1,451 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+/* Estilos generales para el contenedor 
+
+body{
+    background-color: #eeebeb;
+}
+.contenedor {
+    display: flex;
+    justify-content: flex-end; /* Alinea el contenido a la derecha 
+    padding: 20px; /* Espaciado interno del contenedor 
+    gap: 20px; /* Espacio entre el contenedor de juegos y el sidebar 
+}
+
+/* Estilos para el título 
+.tittle {
+    grid-area: header;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilos para la cuadrícula de cartas 
+.containerjuegos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas de igual tamaño 
+    grid-template-rows: repeat(2, auto); /* Dos filas con altura automática según el contenido 
+    gap: 20px; /* Espacio entre las cartas 
+    max-width: 1200px; /* Ancho máximo para el contenedor de las tarjetas 
+    width: 100%; /* Ocupa el 100% del contenedor disponible 
+    position: relative; /* Necesario para que el contenedor de juegos se posicione en relación con el contenedor principal 
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Estilos para cada tarjeta 
+.card {
+    position: relative; /* Necesario para el posicionamiento del overlay 
+    overflow: hidden; /* Asegura que el contenido no se desborde 
+    border-radius: 8px; /* Bordes redondeados 
+}
+
+/* Estilos para la imagen dentro de la tarjeta 
+.card-image {
+    position: relative;
+    width: 100%; /* La imagen ocupa el 100% del ancho de la tarjeta 
+    height: 200px; /* Altura fija para las imágenes 
+    overflow: hidden; /* Oculta el contenido que se desborde 
+}
+
+/* Estilos para la imagen dentro del contenedor 
+.card-image img {
+    width: 100%; /* La imagen ocupa el 100% del ancho del contenedor 
+    height: 100%; /* La imagen ocupa el 100% de la altura del contenedor 
+    object-fit: cover; /* Ajusta la imagen para cubrir todo el contenedor 
+}
+
+/* Estilos para el overlay de texto 
+.card-overlay {
+    position: absolute; /* Posiciona el overlay sobre la imagen 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente 
+    color: #fff; /* Color del texto del overlay 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0; /* Oculta el overlay por defecto 
+    transition: opacity 0.3s ease; /* Transición suave para la aparición 
+}
+
+/* Mostrar el overlay al pasar el cursor sobre la tarjeta 
+.card:hover .card-overlay {
+    opacity: 1; /* Muestra el overlay al pasar el cursor 
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.5em; /* Tamaño de fuente del título 
+    font-weight: bold; /* Negrita para el título 
+}
+
+.card-text {
+    margin: 0;
+    font-size: 1em; /* Tamaño de fuente del texto 
+}
+*/
+
+
+:root{
+    --color-navbarlateral:rgb(255,255,255);
+    --color-texto:rgb(0,0,0);
+    --color-texto-menu:rgb(134,136,144);
+
+    --color-menu-hover:rgb(238,238,238);
+    --color-menu-hover-texto:rgb(0,0,0);
+
+    --color-boton:rgb(0,0,0);
+    --color-boton-texto:rgb(255,255,255);
+
+    --color-linea:rgb(241,241,241);
+
+    --color-switch-base:rgb(110,110,107);
+    --color-switch-circulo:rgb(250,250,250);
+
+    --color--scroll:rgb(192,192,192);
+    --color--scroll-hover:rgb(134,134,134);
+
+    
+}
+
+.dark-mode{
+    --color-navbarlateral:rgb(44,45,49);
+    --color-texto:rgb(255,255,255);
+    --color-texto-menu:rgb(110,110,107);
+
+    --color-menu-hover:rgb(0,0,0);
+    --color-menu-hover-texto:rgb(238,238,238);
+
+    --color-boton:rgb(255,255,255);
+    --color-boton-texto:rgb(0,0,0);
+
+    --color-linea:rgb(71,70,78);
+
+    --color-switch-base:rgb(250,250,250);
+    --color-switch-circulo:rgb(0,0,0);
+
+    --color--scroll:rgb(68,69,74);
+    --color--scroll-hover:rgb(85,85,85);
+}
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Outfit", sans-serif;
+}
+
+body{
+    height: 100vh;
+    width: 100%;
+    background-color: gray;
+}
+
+/*Menu Responsivo*/
+.menu{
+    position: fixed;
+    width: 60px;
+    height: 50px;
+    font-size: 30px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: var(--color-boton);
+    color: var(--color-boton-texto);
+    right: 15px;
+    top: 15px;
+}
+
+
+/*Menu Lateral*/
+.navbarlateral{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 240px;
+    height: 100%;
+    overflow: hidden;
+    padding: 20px, 15px,;
+    background-color: var(--color-navbarlateral);
+    transition: width 0.5s ease,background-color 0.3s ease;
+}
+
+.mini-barra-lateral{
+    width: 80px;
+}
+.navbarlateral span{
+    width: 100px;
+    font-size: 18px;
+    text-align: left;
+    opacity: 1;
+    transition: opacity 0.5s ease,width 0,5s ease;
+}
+
+.navbarlateral span.oculto{
+    opacity: 0;
+}
+
+/*nombre de mi pagina y su logo*/
+.navbarlateral .nombrelateral{
+    width: 100%;
+    height: 45px;
+    color: var(--color-texto);
+    margin-bottom: 35px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin-top: 14px;
+}
+
+.navbarlateral .nombrelateral ion-icon{
+    min-width: 50px;
+    font-size: 46px;
+    cursor: pointer;
+}
+
+ 
+
+
+/*Menu de Navegacion*/
+.navbarlateral .navegacion{
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.navbarlateral .navegacion::-webkit-scrollbar{
+    width: 5px;
+}
+
+.navbarlateral .navegacion::-webkit-scrollbar-thumb{
+    background-color: var(--color--scroll);
+    border-radius: 5px;
+}
+
+.navbarlateral .navegacion::-webkit-scrollbar-thumb:hover{
+    background-color: var(--color--scroll-hover);
+}
+
+.navbarlateral .navegacion li{
+    list-style: none;
+    display: flex;
+    margin-bottom: 5px;
+}
+
+.navbarlateral .navegacion a{
+    width: 100%;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 10px;
+    color: var(--color-texto-menu);
+}
+
+.navbarlateral .navegacion a:hover{
+    background-color: var(--color-menu-hover);
+    color: var(--color-menu-hover-texto);
+}
+
+.navbarlateral .navegacion ion-icon{
+    min-width: 50px;
+    font-size: 30px;
+    margin-left: 11px;
+}
+
+
+/*Linea que separara*/
+
+.navbarlateral .linea{
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-linea);
+
+}
+
+/*Modo Oscuro*/
+.navbarlateral .modo-oscuro{
+    width: 100%;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbarlateral .modo-oscuro .info{
+    width: 150px;
+    height: 45px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    color: var(--color-texto-menu);
+}
+
+.navbarlateral .modo-oscuro ion-icon{
+    width: 46px;
+    font-size: 20px;
+    margin-left: 11px;
+}
+
+/*Elemento switch que nos permitira cambiar al oscuro*/
+
+.navbarlateral .modo-oscuro .switch{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 73px;
+    height: 45px; 
+    cursor: pointer;
+}
+
+.navbarlateral .modo-oscuro .base{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 35px;
+    height: 20px;
+    background-color: var(--color-switch-base);
+    border-radius: 50px;
+}
+
+.navbarlateral .modo-oscuro .circulo{
+    position: absolute;
+    width: 18px;
+    height: 90%;
+    background-color: var(--color-switch-circulo);
+    border-radius: 50%;
+    left: 2px;
+    transition: left 0.5s ease;
+}
+
+.navbarlateral .modo-oscuro .circulo.prendido{
+    left: 15px;
+}
+
+#Novedades{
+    background-color: var(--color-menu-hover);
+    color: var(--color-menu-hover-texto);
+}
+
+main{
+    margin-left: 240px;
+    padding: 20px;
+    transition: margin-left 0.5s ease;
+}
+main.min-main{
+    margin-left: 80px;
+}
+
+body {
+    background-color: #eeebeb;
+}
+
+.contenedor {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    gap: 20px;
+}
+
+.tittle {
+    grid-area: header;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.containerjuegos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.card-text {
+    margin: 0;
+    font-size: 1em;
+}
+
+
+/*--->Responsive*/
+@media (max-height: 660px){
+    .navbarlateral .nombrelateral{
+        margin-bottom: 45px;
+    }
+    .navbarlateral .modo-oscuro{
+        margin-bottom: 3px;
+    }
+}
+
+@media (max-witdh:600px){
+    .navbarlateral{
+        position: fixed;
+        left: -250px;
+    }
+    .menu{
+        display: flex;
+
+
+    }
+}
